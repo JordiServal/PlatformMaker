@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 	[SerializeField] private float m_JumpForce = 400f;                          // Amount of force added when the player jumps.
 	[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;          // Amount of maxSpeed applied to crouching movement. 1 = 100%
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
@@ -17,45 +18,55 @@ public class PlayerController : MonoBehaviour {
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 velocity = Vector3.zero;
 
-	private void Awake() {
+	private void Awake()
+	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 	}
 
 
-	private void FixedUpdate() {
+	private void FixedUpdate()
+	{
 		m_Grounded = false;
 
 		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
 		// This can be done using layers instead but Sample Assets will not overwrite your project settings.
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
-		for (int i = 0; i < colliders.Length; i++) {
+		for (int i = 0; i < colliders.Length; i++)
+		{
 			if (colliders[i].gameObject != gameObject)
 				m_Grounded = true;
 		}
 	}
 
 
-	public void Move(float move, bool crouch, bool jump) {
+	public void Move(float move, bool crouch, bool jump)
+	{
 		// If crouching, check to see if the character can stand up
-		if (!crouch) {
+		if (!crouch)
+		{
 			// If the character has a ceiling preventing them from standing up, keep them crouching
-			if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround)) {
+			if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))
+			{
 				crouch = true;
 			}
 		}
 
 		//only control the player if grounded or airControl is turned on
-		if (m_Grounded || m_AirControl) {
+		if (m_Grounded || m_AirControl)
+		{
 
 			// If crouching
-			if (crouch) {
+			if (crouch)
+			{
 				// Reduce the speed by the crouchSpeed multiplier
 				move *= m_CrouchSpeed;
 
 				// Disable one of the colliders when crouching
 				if (m_CrouchDisableCollider != null)
 					m_CrouchDisableCollider.enabled = false;
-			} else {
+			}
+			else
+			{
 				// Enable the collider when not crouching
 				if (m_CrouchDisableCollider != null)
 					m_CrouchDisableCollider.enabled = true;
@@ -67,18 +78,21 @@ public class PlayerController : MonoBehaviour {
 			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref velocity, m_MovementSmoothing);
 
 			// If the input is moving the player right and the player is facing left...
-			if (move > 0 && !m_FacingRight) {
+			if (move > 0 && !m_FacingRight)
+			{
 				// ... flip the player.
 				Flip();
 			}
 			// Otherwise if the input is moving the player left and the player is facing right...
-			else if (move < 0 && m_FacingRight) {
+			else if (move < 0 && m_FacingRight)
+			{
 				// ... flip the player.
 				Flip();
 			}
 		}
 		// If the player should jump...
-		if (m_Grounded && jump) {
+		if (m_Grounded && jump)
+		{
 			// Add a vertical force to the player.
 			m_Grounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
@@ -86,7 +100,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 
-	private void Flip() {
+	private void Flip()
+	{
 		// Switch the way the player is labelled as facing.
 		m_FacingRight = !m_FacingRight;
 
