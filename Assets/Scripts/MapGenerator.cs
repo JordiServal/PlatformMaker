@@ -33,10 +33,7 @@ public class MapGenerator : MonoBehaviour {
         using (StreamReader r = new StreamReader(fileName))
         {
             string json = r.ReadToEnd();
-            Debug.Log(json);
             JSONNode mapJson = JSON.Parse(json);
-            Debug.Log(mapJson["name"]);
-            Debug.Log(mapJson["columns"]);
             BuildMap(mapJson["columns"]);
         }
     }
