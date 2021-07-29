@@ -47,7 +47,6 @@ public class MapGenerator : MonoBehaviour {
         foreach(JSONNode column in columns) {
             y = 0;
             foreach(JSONNode cell in column) {
-                Debug.Log(cell);
                 if(cell != 0) {
                     Instantiate(blocks[0], new Vector3(x, y, 0), Quaternion.identity);
                 }
