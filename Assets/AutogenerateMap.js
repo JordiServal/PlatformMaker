@@ -7,8 +7,8 @@ const jsonObj = {
 
 for(let i = 0; i<1000; i++) {
     const temp = [];
-    for(let j = 0; j < 100; j++) {
-        temp.push(Math.floor(Math.random() * (1 - 0 + 1) + 0))
+    for(let j = 0; j < 10; j++) {
+        temp.push(Math.floor(Math.random() * Math.random() * (1 - 0 + 1) + 0))
     }
     jsonObj.columns.push(temp);
 } 
