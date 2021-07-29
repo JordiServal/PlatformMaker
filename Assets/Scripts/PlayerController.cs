@@ -33,9 +33,12 @@ public class PlayerController : MonoBehaviour {
 				m_Grounded = true;
 		}
 
-		ScoreScript.scoreValue = this.transform.position.x;
+		if(ScoreScript.scoreValue < this.transform.position.x) {
+			ScoreScript.scoreValue = this.transform.position.x;
+		}
 
 		if(this.transform.position.y < -15) {
+			ScoreScript.scoreValue = 0;
 			ScoreScript.deathsValue++;
 			this.transform.position = new Vector3(1, 1, 0);
 		}
