@@ -32,6 +32,14 @@ public class PlayerController : MonoBehaviour {
 			if (colliders[i].gameObject != gameObject)
 				m_Grounded = true;
 		}
+
+		ScoreScript.scoreValue = this.transform.position.x;
+
+		if(this.transform.position.y < -15) {
+			ScoreScript.deathsValue++;
+			this.transform.position = new Vector3(1, 1, 0);
+		}
+
 	}
 
 
