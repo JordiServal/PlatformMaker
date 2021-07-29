@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using SimpleJSON;
 
-// [Serializable]
+[System.Serializable]
 public class Column {
     public int[] rows;
 }
 
-// [Serializable]
+[System.Serializable]
 public class Map {
     public string name;
     public string owner;
-    public Column[] columns;
+    public int[,] columns;
 }
 
 public class MapGenerator : MonoBehaviour {
@@ -32,11 +33,27 @@ public class MapGenerator : MonoBehaviour {
         using (StreamReader r = new StreamReader(fileName))
         {
             string json = r.ReadToEnd();
-            Map items = JsonUtility.FromJson<Map>(json);
-            for (int i = 0; i < items.columns.Length; i++)
-            {
+            Debug.Log(json);
+            JSONNode mapJson = JSON.Parse(json);
+            Debug.Log(mapJson["name"]);
+            Debug.Log(mapJson["columns"]);
+            BuildMap(mapJson["columns"]);
+        }
+    }
 
-            }
+    public void BuildMap(JSONNode columns) {
+        int x = 0; 
+        int y = 0;
+        foreach(JSONNode column in columns) {
+            y = 0;
+            foreach(JSONNode cell in column) {
+                Debug.Log(cell);
+                if(cell != 0) {
+                    Instantiate(blocks[0], new Vector3(x, y, 0), Quaternion.identity);
+                }
+                y++;
+            } 
+            x++;
         }
     }
 }
