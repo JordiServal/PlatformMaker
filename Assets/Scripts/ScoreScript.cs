@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ScoreScript : MonoBehaviour {
 
+    public static float maxScoreValue = 0;
     public static float scoreValue = 0;
     public static int deathsValue = 0;
     
@@ -16,6 +17,8 @@ public class ScoreScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        score.text = "Score: " + Mathf.Floor(scoreValue)+ "\n\r" + "Deaths: "+ deathsValue;
+        if(maxScoreValue < scoreValue) maxScoreValue = scoreValue;
+
+        score.text = "MaxScore: " + Mathf.Floor(maxScoreValue)+ "\n\r" + "Score: " + Mathf.Floor(scoreValue)+ "\n\r" + "Deaths: "+ deathsValue;
     }
 }
