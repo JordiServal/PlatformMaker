@@ -4,6 +4,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using SimpleJSON;
+using System.Net;
 
 [System.Serializable]
 public class Column {
@@ -18,24 +19,20 @@ public class Map {
 }
 
 public class MapGenerator : MonoBehaviour {
-    private string mapFile = "map.json";
 
     public GameObject[] blocks;
 
     // Start is called before the first frame update
     void Start() {
-        string fileName = Path.Combine(Application.dataPath, mapFile);
-        LoadJson(fileName);
-        
+        getMap();
     }
-    public void LoadJson(string fileName)
-    {
-        using (StreamReader r = new StreamReader(fileName))
-        {
-            string json = r.ReadToEnd();
-            JSONNode mapJson = JSON.Parse(json);
-            BuildMap(mapJson["columns"]);
-        }
+
+    private void getMap() {
+        HttpWebRequest request = (HttpWebRequest) WebRequest.Create("http://localhost:6000/api/map");
+        HttpWebResponse response = (HttpWebResponse) request.GetResponse();
+        StreamReader reader = new StreamReader(response.GetResponseStream());
+        JSONNode mapJson = reader.ReadToEnd();
+        BuildMap(mapJson);
     }
 
     public void BuildMap(JSONNode columns) {
