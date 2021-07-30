@@ -31,8 +31,9 @@ public class MapGenerator : MonoBehaviour {
         HttpWebRequest request = (HttpWebRequest) WebRequest.Create("http://localhost:6000/api/map");
         HttpWebResponse response = (HttpWebResponse) request.GetResponse();
         StreamReader reader = new StreamReader(response.GetResponseStream());
-        JSONNode mapJson = reader.ReadToEnd();
-        BuildMap(mapJson);
+        JSONNode mapJson = JSON.Parse(reader.ReadToEnd());
+        Debug.Log(mapJson["columns"]);
+        BuildMap(mapJson["columns"]);
     }
 
     public void BuildMap(JSONNode columns) {
