@@ -21,6 +21,7 @@ public class Map {
 public class MapGenerator : MonoBehaviour {
 
     public GameObject[] blocks;
+    public string mapName = "Test";
 
     // Start is called before the first frame update
     void Start() {
@@ -28,7 +29,7 @@ public class MapGenerator : MonoBehaviour {
     }
 
     private void getMap() {
-        HttpWebRequest request = (HttpWebRequest) WebRequest.Create("http://localhost:6000/api/map");
+        HttpWebRequest request = (HttpWebRequest) WebRequest.Create("http://localhost:6000/api/map/"+mapName);
         HttpWebResponse response = (HttpWebResponse) request.GetResponse();
         StreamReader reader = new StreamReader(response.GetResponseStream());
         JSONNode mapJson = JSON.Parse(reader.ReadToEnd());
