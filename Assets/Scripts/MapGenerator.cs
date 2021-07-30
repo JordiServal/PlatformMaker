@@ -33,7 +33,6 @@ public class MapGenerator : MonoBehaviour {
         HttpWebResponse response = (HttpWebResponse) request.GetResponse();
         StreamReader reader = new StreamReader(response.GetResponseStream());
         JSONNode mapJson = JSON.Parse(reader.ReadToEnd());
-        Debug.Log(mapJson["columns"]);
         BuildMap(mapJson["columns"]);
     }
 
@@ -44,7 +43,7 @@ public class MapGenerator : MonoBehaviour {
             y = 0;
             foreach(JSONNode cell in column) {
                 if(cell != 0) {
-                    Instantiate(blocks[0], new Vector3(x, y, 0), Quaternion.identity);
+                    Instantiate(blocks[cell-1], new Vector3(x, y, 0), Quaternion.identity);
                 }
                 y++;
             } 

@@ -38,9 +38,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if(this.transform.position.y < -15) {
-			ScoreScript.scoreValue = 0;
-			ScoreScript.deathsValue++;
-			this.transform.position = new Vector3(1, 1, 0);
+			Die();
 		}
 
 	}
@@ -105,5 +103,11 @@ public class PlayerController : MonoBehaviour {
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
+	}
+
+	public void Die() {
+		ScoreScript.scoreValue = 0;
+		ScoreScript.deathsValue++;
+		this.transform.position = new Vector3(1, 1, 0);
 	}
 }

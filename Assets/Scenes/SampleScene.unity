@@ -154,6 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blocks:
   - {fileID: 1656447864545762659, guid: ef588380ecc7b9347a4b7187a7823dee, type: 3}
+  - {fileID: 7479908003274746398, guid: ff72b70c915191a4c800ad77bfe80fb0, type: 3}
+  mapName: Test
 --- !u!4 &199224735
 Transform:
   m_ObjectHideFlags: 0
@@ -563,7 +565,7 @@ GameObject:
   - component: {fileID: 1771858291}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
