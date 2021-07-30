@@ -25,6 +25,13 @@ public class PlayerController : MonoBehaviour {
 	private void FixedUpdate() {
 		m_Grounded = false;
 
+		// Check stick to wall
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right);
+		if(hit.collider != null) {
+			float distance = Mathf.Abs(hit.point.x - transform.position.x);
+			if(distance < .5f) m_Grounded = true;
+		}
+
 		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
 		// This can be done using layers instead but Sample Assets will not overwrite your project settings.
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
@@ -45,13 +52,6 @@ public class PlayerController : MonoBehaviour {
 
 
 	public void Move(float move, bool crouch, bool jump) {
-		// If crouching, check to see if the character can stand up
-		if (!crouch) {
-			// If the character has a ceiling preventing them from standing up, keep them crouching
-			if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround)) {
-				crouch = true;
-			}
-		}
 
 		//only control the player if grounded or airControl is turned on
 		if (m_Grounded || m_AirControl) {
