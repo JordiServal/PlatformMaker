@@ -155,7 +155,7 @@ MonoBehaviour:
   blocks:
   - {fileID: 1656447864545762659, guid: ef588380ecc7b9347a4b7187a7823dee, type: 3}
   - {fileID: 7479908003274746398, guid: ff72b70c915191a4c800ad77bfe80fb0, type: 3}
-  mapName: Test1
+  mapName: Test3
 --- !u!4 &199224735
 Transform:
   m_ObjectHideFlags: 0
@@ -668,7 +668,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -737,8 +737,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8db7d6678ad51694188b49aede8d33c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1771858296}
-  runSpeed: 50
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  moveAcceleration: 50
+  maxMoveSpeed: 12
+  groundLinearDrag: 10
+  jumpForce: 12
+  airLinearDrag: 2.5
+  fallMultiplier: 8
+  lowJumpFallMultiplier: 5
+  extraJumps: 1
+  groundRaycastLength: 0.75
 --- !u!4 &1771858295
 Transform:
   m_ObjectHideFlags: 0
@@ -763,7 +773,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1771858290}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b09b7d464d9920944ae886e9828e29b2, type: 3}
   m_Name: 
