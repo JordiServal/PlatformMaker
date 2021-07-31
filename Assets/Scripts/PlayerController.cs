@@ -26,11 +26,10 @@ public class PlayerController : MonoBehaviour {
 		m_Grounded = false;
 
 		// Check stick to wall
-		// RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right);
-		// if(hit.collider != null) {
-		// 	float distance = Mathf.Abs(hit.point.x - transform.position.x);
-		// 	if(distance < .5f) m_Grounded = true;
-		// }
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left);
+		WallJump(hit);
+		hit = Physics2D.Raycast(transform.position, Vector2.right);
+		WallJump(hit);
 
 		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
 		// This can be done using layers instead but Sample Assets will not overwrite your project settings.
@@ -50,6 +49,17 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
+	public void WallJump(RaycastHit2D hit) {
+		if(hit.collider != null) {
+			Debug.Log(hit.collider.tag);
+			if(hit.collider.gameObject.tag == "Wall") {
+
+				float distance = Mathf.Abs(hit.point.x - transform.position.x);
+				Debug.Log(distance);
+				if(distance < .5f) m_Grounded = true;
+			}
+		}
+	}
 
 	public void Move(float move, bool crouch, bool jump) {
 
