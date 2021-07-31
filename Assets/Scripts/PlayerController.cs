@@ -51,11 +51,9 @@ public class PlayerController : MonoBehaviour {
 
 	public void WallJump(RaycastHit2D hit) {
 		if(hit.collider != null) {
-			Debug.Log(hit.collider.tag);
 			if(hit.collider.gameObject.tag == "Wall") {
 
 				float distance = Mathf.Abs(hit.point.x - transform.position.x);
-				Debug.Log(distance);
 				if(distance < .5f) m_Grounded = true;
 			}
 		}
