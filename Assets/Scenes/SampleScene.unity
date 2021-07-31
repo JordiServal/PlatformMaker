@@ -155,6 +155,7 @@ MonoBehaviour:
   blocks:
   - {fileID: 1656447864545762659, guid: ef588380ecc7b9347a4b7187a7823dee, type: 3}
   - {fileID: 7479908003274746398, guid: ff72b70c915191a4c800ad77bfe80fb0, type: 3}
+  - {fileID: 7367496520534288301, guid: a4fa9ec8a0baa434ea684c4ad9a6b81c, type: 3}
   mapName: Test
 --- !u!4 &199224735
 Transform:
