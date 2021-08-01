@@ -33,7 +33,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1656447864545762659, guid: ef588380ecc7b9347a4b7187a7823dee, type: 3}
       propertyPath: m_Name
-      value: Spike Variant
+      value: Spike
+      objectReference: {fileID: 0}
+    - target: {fileID: 1656447864545762659, guid: ef588380ecc7b9347a4b7187a7823dee, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1656447864545762670, guid: ef588380ecc7b9347a4b7187a7823dee, type: 3}
       propertyPath: m_RootOrder

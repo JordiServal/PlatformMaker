@@ -247,11 +247,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedObject: {fileID: 0}
   blocks:
-  - {fileID: 1656447864545762659, guid: ef588380ecc7b9347a4b7187a7823dee, type: 3}
-  - {fileID: 7479908003274746398, guid: ff72b70c915191a4c800ad77bfe80fb0, type: 3}
-  - {fileID: 7367496520534288301, guid: a4fa9ec8a0baa434ea684c4ad9a6b81c, type: 3}
-  - {fileID: 678602919893038715, guid: 6bef17ecfd7f7374bb6fd4833edf4434, type: 3}
-  - {fileID: 8004758519785237874, guid: 7654c73cccdd78340ac7ca2e3b3df84a, type: 3}
+  - {fileID: 4223616349914744845, guid: 5aad25ff3706c3b4c918c5f9b692e4ca, type: 3}
+  - {fileID: 8108938117771168814, guid: a23bddb9ff7e26c4a954e1749f61b88b, type: 3}
+  - {fileID: 5432831701296506079, guid: 8d5356645a1b7bb44b861db4587ff53b, type: 3}
+  - {fileID: 9066711862313196420, guid: 08632b3fad4ca2041acd273b0a62d5e2, type: 3}
+  - {fileID: 3777307974197146312, guid: 6bd7b41243486784c946e946cbdca6fb, type: 3}
 --- !u!1 &1036023428
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +261,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1036023430}
-  - component: {fileID: 1036023429}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -269,20 +268,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1036023429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1036023428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd6f84a80df999e46ab8639080dee086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedObject: {fileID: 0}
-  blocks: []
 --- !u!4 &1036023430
 Transform:
   m_ObjectHideFlags: 0
