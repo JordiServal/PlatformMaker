@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour {
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 velocity = Vector3.zero;
 
+	public Vector3 SpawnPoint = new Vector3(1, 1, 0);
+	public TimerUI timer;
+
 	private void Awake() {
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 	}
@@ -26,9 +29,11 @@ public class PlayerController : MonoBehaviour {
 		m_Grounded = false;
 
 		// Check stick to wall
-		RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left);
+		// Gitanada Porque no se puede desactivar el flag del collider autodetectandose por el point and click al crear mapa
+		// REVISAR
+		RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, Vector2.left);
 		WallJump(hit);
-		hit = Physics2D.Raycast(transform.position, Vector2.right);
+		hit = Physics2D.RaycastAll(transform.position, Vector2.right);
 		WallJump(hit);
 
 		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
@@ -49,12 +54,17 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
-	public void WallJump(RaycastHit2D hit) {
-		if(hit.collider != null) {
-			if(hit.collider.gameObject.tag == "Wall") {
+	public void WallJump(RaycastHit2D[] hits) {
+		if(hits.Length > 0) {
+			Debug.Log(hits.Length);
+			foreach (RaycastHit2D hit in hits) {
+				if(hit.collider != null) {
+					if(hit.collider.gameObject.tag == "Wall") {
 
-				float distance = Mathf.Abs(hit.point.x - transform.position.x);
-				if(distance < .5f) m_Grounded = true;
+						float distance = Mathf.Abs(hit.point.x - transform.position.x);
+						if(distance < .5f) m_Grounded = true;
+					}
+				}
 			}
 		}
 	}
@@ -114,8 +124,24 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void Die() {
+		timer.RestartTimer();
 		ScoreScript.scoreValue = 0;
 		ScoreScript.deathsValue++;
-		this.transform.position = new Vector3(1, 1, 0);
+		m_Grounded = false;
+		
+		m_Rigidbody2D.velocity = Vector3.zero; //Get Rigidbody and set velocity to (0f, 0f, 0f)
+		Respawn();
+	}
+
+	public void SetSpawnPoint(Vector3 point) {
+		SpawnPoint = point;
+	}
+	
+	public void Respawn() {
+		this.transform.position = SpawnPoint;
+	}
+
+	public void Win() {
+		timer.StopTimer();
 	}
 }

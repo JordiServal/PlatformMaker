@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &4646747136786153355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8004758519785237874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 497f1b0a3d11ada4682eb5f1c254a85b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8784974726530396177
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7,6 +19,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1656447864545762657, guid: ef588380ecc7b9347a4b7187a7823dee, type: 3}
+      propertyPath: m_Color.a
+      value: 0.2784314
+      objectReference: {fileID: 0}
     - target: {fileID: 1656447864545762657, guid: ef588380ecc7b9347a4b7187a7823dee, type: 3}
       propertyPath: m_Color.b
       value: 0.25
@@ -21,7 +37,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1656447864545762659, guid: ef588380ecc7b9347a4b7187a7823dee, type: 3}
       propertyPath: m_Name
-      value: WinFloor
+      value: WinPoint
       objectReference: {fileID: 0}
     - target: {fileID: 1656447864545762659, guid: ef588380ecc7b9347a4b7187a7823dee, type: 3}
       propertyPath: m_TagString
@@ -30,6 +46,10 @@ PrefabInstance:
     - target: {fileID: 1656447864545762670, guid: ef588380ecc7b9347a4b7187a7823dee, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1656447864545762670, guid: ef588380ecc7b9347a4b7187a7823dee, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 1656447864545762670, guid: ef588380ecc7b9347a4b7187a7823dee, type: 3}
       propertyPath: m_LocalPosition.x
@@ -73,11 +93,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1656447864545762671, guid: ef588380ecc7b9347a4b7187a7823dee, type: 3}
       propertyPath: m_Size.y
-      value: 1000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1656447864545762671, guid: ef588380ecc7b9347a4b7187a7823dee, type: 3}
       propertyPath: m_Offset.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1656447864545762671, guid: ef588380ecc7b9347a4b7187a7823dee, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef588380ecc7b9347a4b7187a7823dee, type: 3}
+--- !u!1 &8004758519785237874 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1656447864545762659, guid: ef588380ecc7b9347a4b7187a7823dee, type: 3}
+  m_PrefabInstance: {fileID: 8784974726530396177}
+  m_PrefabAsset: {fileID: 0}

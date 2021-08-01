@@ -43,7 +43,7 @@ public class MapGenerator : MonoBehaviour {
             y = 0;
             foreach(JSONNode cell in column) {
                 if(cell != 0) {
-                    Instantiate(blocks[cell-1], new Vector3(x, y, 0), Quaternion.identity);
+                    Instantiate(blocks[cell-1], new Vector3(x, y, 0), Quaternion.identity, transform);
                 }
                 y++;
             } 
