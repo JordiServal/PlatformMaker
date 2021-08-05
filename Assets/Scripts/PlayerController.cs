@@ -33,14 +33,15 @@ public class PlayerController : MonoBehaviour {
 		// REVISAR
 		RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, Vector2.left);
 		WallJump(hit);
+		Debug.Log(m_Grounded);
 		hit = Physics2D.RaycastAll(transform.position, Vector2.right);
 		WallJump(hit);
 
 		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
 		// This can be done using layers instead but Sample Assets will not overwrite your project settings.
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
-		for (int i = 0; i < colliders.Length; i++) {
-			if (colliders[i].gameObject != gameObject)
+		foreach(Collider2D objCol in colliders ) {
+			if (objCol.gameObject != gameObject)
 				m_Grounded = true;
 		}
 
