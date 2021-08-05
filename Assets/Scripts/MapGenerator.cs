@@ -24,13 +24,27 @@ public class MapGenerator : MonoBehaviour {
 
     public GameObject[] blocks;
     public string mapName = "Test";
+    private string currentMap;
 
-    // Start is called before the first frame update
     void Start() {
         getMap();
     }
 
+    void Update() {
+        if(currentMap != mapName) {
+            getMap();
+        }
+    }
+
+    private void cleanMap() {
+        for(int i = 0; i < transform.childCount; i++ ) {
+            GameObject.Destroy(transform.GetChild(i).gameObject);
+        }
+    }
+
     private void getMap() {
+        cleanMap();
+
         HttpWebRequest request = (HttpWebRequest) WebRequest.Create("http://localhost:6000/api/map/"+mapName);
         HttpWebResponse response = (HttpWebResponse) request.GetResponse();
         StreamReader reader = new StreamReader(response.GetResponseStream());
@@ -41,6 +55,7 @@ public class MapGenerator : MonoBehaviour {
     }
 
     public void BuildMap(Map map) {
+        currentMap = map.name;
         foreach(MapItem mapItem in map.map) {
             Instantiate(blocks[mapItem.type - 1], new Vector3(mapItem.x, mapItem.y, 0), Quaternion.identity, transform);
         }
