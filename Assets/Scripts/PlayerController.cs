@@ -56,7 +56,6 @@ public class PlayerController : MonoBehaviour {
 
 	public void WallJump(RaycastHit2D[] hits) {
 		if(hits.Length > 0) {
-			Debug.Log(hits.Length);
 			foreach (RaycastHit2D hit in hits) {
 				if(hit.collider != null) {
 					if(hit.collider.gameObject.tag == "Wall") {
