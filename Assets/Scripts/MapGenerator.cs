@@ -7,15 +7,17 @@ using SimpleJSON;
 using System.Net;
 
 [System.Serializable]
-public class Column {
-    public int[] rows;
+public class MapItem {
+    public int x;
+    public int y;
+    public int type;
 }
 
 [System.Serializable]
 public class Map {
     public string name;
     public string owner;
-    public int[,] columns;
+    public MapItem[] map;
 }
 
 public class MapGenerator : MonoBehaviour {
@@ -32,22 +34,15 @@ public class MapGenerator : MonoBehaviour {
         HttpWebRequest request = (HttpWebRequest) WebRequest.Create("http://localhost:6000/api/map/"+mapName);
         HttpWebResponse response = (HttpWebResponse) request.GetResponse();
         StreamReader reader = new StreamReader(response.GetResponseStream());
-        JSONNode mapJson = JSON.Parse(reader.ReadToEnd());
-        BuildMap(mapJson["columns"]);
+        string jsonResponse = reader.ReadToEnd();
+        Map map = JsonUtility.FromJson<Map>(jsonResponse);
+
+        BuildMap(map);
     }
 
-    public void BuildMap(JSONNode columns) {
-        int x = 0; 
-        int y = 0;
-        foreach(JSONNode column in columns) {
-            y = 0;
-            foreach(JSONNode cell in column) {
-                if(cell != 0) {
-                    Instantiate(blocks[cell-1], new Vector3(x, y, 0), Quaternion.identity, transform);
-                }
-                y++;
-            } 
-            x++;
+    public void BuildMap(Map map) {
+        foreach(MapItem mapItem in map.map) {
+            Instantiate(blocks[mapItem.type - 1], new Vector3(mapItem.x, mapItem.y, 0), Quaternion.identity, transform);
         }
     }
 }
